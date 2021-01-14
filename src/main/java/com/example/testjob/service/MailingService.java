@@ -53,8 +53,13 @@ public class MailingService {
 
     public ResponseEntity<?> getMailing(@RequestParam("trackingNumber") Integer trackingNumber){
         if(mailingRepo.existsByTrackingNumber(trackingNumber)) {
-            Mailing mailing = (mailingRepo.findByTrackingNumber(trackingNumber));
-            return new ResponseEntity<>(mailing, HttpStatus.OK);
+            try {
+                Mailing mailing = (mailingRepo.findByTrackingNumber(trackingNumber));
+                return new ResponseEntity<>(mailing, HttpStatus.OK);
+            } catch (Exception e){
+                return  new ResponseEntity<>(new Message("Ошибка сохранения, пожалуйста попробуйте еще раз"),HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
         }
         return new ResponseEntity<>(new Message("Посылки с таким трек кодом не существует"),HttpStatus.BAD_REQUEST);
     }
