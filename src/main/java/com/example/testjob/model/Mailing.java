@@ -14,6 +14,7 @@ public class Mailing {
     @Column(name = "tracking_number")
     private Integer trackingNumber;
     @Column(name = "type")
+    //каждый тип посылки должен иметь свой код, коды не стал реализовать т.к это не влияет на общую реализацию, их можно хранить в видел сета в бд
     private Integer type;
     @Column(name = "index")
     private Integer index;
@@ -30,6 +31,13 @@ public class Mailing {
     private List<IntermediatePoint> listPostOffices = new ArrayList<>();
 
     public Mailing() {
+    }
+
+    public Mailing(Integer type, Integer index, String endAddress, String recipientName) {
+        this.type = type;
+        this.index = index;
+        this.endAddress = endAddress;
+        this.recipientName = recipientName;
     }
 
     public Long getId() {

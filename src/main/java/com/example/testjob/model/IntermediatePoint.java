@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class IntermediatePoint {
-
+    //модель которая хранит прожеточные точки пребывание посылки
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
