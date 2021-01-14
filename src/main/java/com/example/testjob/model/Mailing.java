@@ -2,9 +2,7 @@ package com.example.testjob.model;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "mailing")
@@ -14,7 +12,7 @@ public class Mailing {
     @Column(name = "id")
     private Long id;
     @Column(name = "tracking_number")
-    private Long trackingNumber;
+    private Integer trackingNumber;
     @Column(name = "type")
     private Integer type;
     @Column(name = "index")
@@ -26,30 +24,15 @@ public class Mailing {
     @Column(name = "status")
     private boolean status;
     @Column(name = "list_post_offices")
+
+    @OneToMany(cascade = CascadeType.ALL)
     @ElementCollection
-    private List<Integer> listPostOffices = new ArrayList<Integer>();
+    private List<IntermediatePoint> listPostOffices = new ArrayList<>();
 
-
-    public Mailing(Long id, Long trackingNumber, Integer type, Integer index, String endAddress, String recipientName, boolean status, List<Integer> listPostOffices) {
-        this.id = id;
-        this.trackingNumber = trackingNumber;
-        this.type = type;
-        this.index = index;
-        this.endAddress = endAddress;
-        this.recipientName = recipientName;
-        this.status = status;
-        this.listPostOffices = listPostOffices;
+    public Mailing() {
     }
 
-    public Mailing(Long trackingNumber, Integer type, Integer index, String endAddress, String recipientName, boolean status, List<Integer> listPostOffices) {
-        this.trackingNumber = trackingNumber;
-        this.type = type;
-        this.index = index;
-        this.endAddress = endAddress;
-        this.recipientName = recipientName;
-        this.status = status;
-        this.listPostOffices = listPostOffices;
-    }
+
 
     public Long getId() {
         return id;
@@ -67,11 +50,11 @@ public class Mailing {
         this.status = status;
     }
 
-    public Long getTrackingNumber() {
+    public Integer getTrackingNumber() {
         return trackingNumber;
     }
 
-    public void setTrackingNumber(Long trackingNumber) {
+    public void setTrackingNumber(Integer trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
 
@@ -107,11 +90,11 @@ public class Mailing {
         this.recipientName = recipientName;
     }
 
-    public List<Integer> getListPostOffices() {
+    public List<IntermediatePoint> getListPostOffices() {
         return listPostOffices;
     }
 
-    public void setListPostOffices(List<Integer> listPostOffices) {
+    public void setListPostOffices(List<IntermediatePoint> listPostOffices) {
         this.listPostOffices = listPostOffices;
     }
 
