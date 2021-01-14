@@ -1,0 +1,13 @@
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/model/PostOffice.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/TestJobApplication.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/repos/MailingRepo.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/service/PostOfficeService.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/repos/IntermediatePointRepo.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/model/Mailing.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/configs/SpringFoxConfig.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/controller/PostOfficeController.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/service/MailingService.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/model/IntermediatePoint.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/repos/PostOfficeRepo.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/controller/MailingController.java
+/home/antonscript/Projects/GitHub/test-job/src/main/java/com/example/testjob/baseModel/Message.java

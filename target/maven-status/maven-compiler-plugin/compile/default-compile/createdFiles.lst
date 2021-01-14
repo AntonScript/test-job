@@ -1,0 +1,13 @@
+com/example/testjob/repos/MailingRepo.class
+com/example/testjob/repos/IntermediatePointRepo.class
+com/example/testjob/repos/PostOfficeRepo.class
+com/example/testjob/service/MailingService.class
+com/example/testjob/model/IntermediatePoint.class
+com/example/testjob/controller/PostOfficeController.class
+com/example/testjob/service/PostOfficeService.class
+com/example/testjob/TestJobApplication.class
+com/example/testjob/model/Mailing.class
+com/example/testjob/configs/SpringFoxConfig.class
+com/example/testjob/controller/MailingController.class
+com/example/testjob/model/PostOffice.class
+com/example/testjob/baseModel/Message.class
