@@ -5,6 +5,7 @@ import com.example.testjob.model.IntermediatePoint;
 import com.example.testjob.model.Mailing;
 import com.example.testjob.repos.IntermediatePointRepo;
 import com.example.testjob.repos.MailingRepo;
+import com.example.testjob.repos.PostOfficeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class MailingService {
@@ -50,8 +49,6 @@ public class MailingService {
                 return  new ResponseEntity<>(new Message("Ошибка сохранения, пожалуйста попробуйте еще раз"),HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
-
-
     }
 
     public ResponseEntity<?> getMailing(@RequestParam("trackingNumber") Integer trackingNumber){
@@ -60,7 +57,6 @@ public class MailingService {
             return new ResponseEntity<>(mailing, HttpStatus.OK);
         }
         return new ResponseEntity<>(new Message("Посылки с таким трек кодом не существует"),HttpStatus.BAD_REQUEST);
-
     }
 
     public ResponseEntity<?> receivingMailing(@RequestParam("trackingNumber") Integer trackingNumber, @RequestParam("index") Integer index){

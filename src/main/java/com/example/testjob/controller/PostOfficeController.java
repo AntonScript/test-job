@@ -1,6 +1,5 @@
 package com.example.testjob.controller;
 
-import com.example.testjob.model.Mailing;
 import com.example.testjob.model.PostOffice;
 import com.example.testjob.service.PostOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +18,4 @@ public class PostOfficeController {
     public ResponseEntity<?> createPostOffice(@RequestBody PostOffice postOffice){
         return postOfficeService.createPostOffice(postOffice);
     }
-
 }

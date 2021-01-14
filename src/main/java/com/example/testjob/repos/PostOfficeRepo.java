@@ -5,4 +5,5 @@ import com.example.testjob.model.PostOffice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PostOfficeRepo extends JpaRepository<PostOffice,Long> {
+    boolean existsByIndex(Integer n);
 }

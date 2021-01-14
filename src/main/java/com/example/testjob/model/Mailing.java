@@ -32,8 +32,6 @@ public class Mailing {
     public Mailing() {
     }
 
-
-
     public Long getId() {
         return id;
     }
