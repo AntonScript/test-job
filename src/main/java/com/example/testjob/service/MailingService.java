@@ -22,6 +22,7 @@ public class MailingService {
     @Autowired
     private IntermediatePointRepo intermediatePointRepo;
 
+    //регистрация новой посылки, делаем проверку чтобы все поля были заполнены, если такая посылка уже создана то сообщаем об этом
     public ResponseEntity<?> createMailing(@RequestBody Mailing mailing,@RequestParam("index") Integer index){
         Mailing newMailing = mailing;
         if(newMailing == null)
@@ -51,19 +52,21 @@ public class MailingService {
         }
     }
 
+    //получение посылки по ее трек-коду и идет проверка, а есть ли такая посылка вообще
     public ResponseEntity<?> getMailing(@RequestParam("trackingNumber") Integer trackingNumber){
         if(mailingRepo.existsByTrackingNumber(trackingNumber)) {
             try {
                 Mailing mailing = (mailingRepo.findByTrackingNumber(trackingNumber));
                 return new ResponseEntity<>(mailing, HttpStatus.OK);
             } catch (Exception e){
-                return  new ResponseEntity<>(new Message("Ошибка сохранения, пожалуйста попробуйте еще раз"),HttpStatus.INTERNAL_SERVER_ERROR);
+                return  new ResponseEntity<>(new Message("Ошибка сервера, пожалуйста попробуйте еще раз"),HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
         }
         return new ResponseEntity<>(new Message("Посылки с таким трек кодом не существует"),HttpStatus.BAD_REQUEST);
     }
 
+    //добавляем в историю посылки промежуточный пункт, сохраняется время прибытия в пункт
     public ResponseEntity<?> receivingMailing(@RequestParam("trackingNumber") Integer trackingNumber, @RequestParam("index") Integer index){
        if(trackingNumber == null)
            return  new ResponseEntity<>(new Message("Не указан трек-код посылки"),HttpStatus.BAD_REQUEST);
@@ -88,6 +91,7 @@ public class MailingService {
        }
     }
 
+    //Региструем отправку посылки из промежуточного пункта, находим по индексу пункта запись и вносим в эту модель, время отправки из этого пункта
     public ResponseEntity<?> departureMailing(@RequestParam("trackingNumber") Integer trackingNumber, @RequestParam("index") Integer index){
         if(trackingNumber == null)
             return  new ResponseEntity<>(new Message("Не указан трек-код посылки"),HttpStatus.BAD_REQUEST);
@@ -110,11 +114,15 @@ public class MailingService {
             return  new ResponseEntity<>(new Message("Ошибка сохранения, пожалуйста попробуйте еще раз"),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    //Получение посылки и проверка еть ли посылка с таким трек кодом
     public ResponseEntity<?> endMailing(@RequestParam("trackingNumber") Integer trackingNumber, @RequestParam("index") Integer index){
         if(trackingNumber == null)
             return  new ResponseEntity<>(new Message("Не указан трек-код посылки"),HttpStatus.BAD_REQUEST);
         if(index == null)
             return  new ResponseEntity<>(new Message("Не указан индекс отделения"),HttpStatus.BAD_REQUEST);
+        if(!mailingRepo.existsByTrackingNumber(trackingNumber))
+            return  new ResponseEntity<>(new Message("Посылки с таким трек-кодом не существует"),HttpStatus.BAD_REQUEST);
         try {
             Mailing mailing = mailingRepo.findByTrackingNumber(trackingNumber);
             mailing.setStatus(true);
@@ -123,7 +131,7 @@ public class MailingService {
             return  new ResponseEntity<>(new Message("Посылка получена"),HttpStatus.OK);
 
         } catch (Exception e){
-            return  new ResponseEntity<>(new Message("Ошибка сохранения, пожалуйста попробуйте еще раз"),HttpStatus.INTERNAL_SERVER_ERROR);
+            return  new ResponseEntity<>(new Message("Ошибка сервера, пожалуйста попробуйте еще раз"),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

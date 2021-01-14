@@ -16,6 +16,7 @@ public class PostOfficeService {
     @Autowired
     private PostOfficeRepo postOfficeRepo;
 
+    //регистрация нового почтового отделения, перед сохранением проверяем есть ли почтовое отделение с таким индексом
     public ResponseEntity<?> createPostOffice(@RequestBody PostOffice postOffice){
         PostOffice newPostOffice = postOffice;
         if(newPostOffice == null)
