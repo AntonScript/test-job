@@ -1,14 +1,11 @@
 package com.example.testjob.controller;
 
-import com.example.testjob.baseModel.Message;
+import com.example.testjob.baseModel.CreateMailing;
 import com.example.testjob.model.Mailing;
 import com.example.testjob.service.MailingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 
 @RestController
 public class MailingController {
@@ -18,8 +15,10 @@ public class MailingController {
 
     //создание посылки, в посылку добавляет пунки из которого произошло отправление
     @PostMapping("/mailing")
-    public ResponseEntity<?> createMailing(@RequestBody Mailing mailing,@RequestParam("index") Integer index){
-        return mailingService.createMailing(mailing,index);
+    public ResponseEntity<?> createMailing(@RequestBody CreateMailing createMailing){
+        Mailing mailing = new Mailing(createMailing.getType(),createMailing.getIndex(),createMailing.getEndAddress(),createMailing.getRecipientName());
+        Integer indexPostOffice = createMailing.getIndexPostOffice();
+        return mailingService.createMailing(mailing,indexPostOffice);
     }
 
     //получение посылки по ее трек-коду(он генируется на основание хеш кода)

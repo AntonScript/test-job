@@ -129,10 +129,10 @@ paths:
           format: int32
         - in: body
           name: mailing
-          description: Почтовое отправление, обязательные поля-type,index,endAddress,recipientName. Поле trackingNumber генерируется с помощь хеш кода на основание вышеперечисленных полей.
+          description: Почтовое отправление, обязательные поля-type,index,endAddress,recipientName. Поле trackingNumber генерируется с помощь хеш кода на основание вышеперечисленных полей. Поле indexPostOffice передает индекс почтвового отделения где регистрируют посылку
           required: true
           schema:
-            $ref: '#/definitions/Mailing'
+            $ref: '#/definitions/CreateMailing'
       responses:
         '200':
           description: OK
@@ -260,6 +260,23 @@ definitions:
         format: int32
     title: Mailing
 
+  CreateMailing:
+    type: object
+    properties:
+      type:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      endAddress:
+        type: string
+      recipientName:
+        type: string
+      indexPostOffice:
+        type: integer
+        format: int32
+
   PostOffice:
     type: object
     properties:
@@ -271,5 +288,4 @@ definitions:
       namePostOffice:
         type: string
     title: PostOffice
-  
- 
+
