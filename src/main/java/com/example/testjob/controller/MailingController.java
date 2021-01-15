@@ -1,6 +1,6 @@
 package com.example.testjob.controller;
 
-import com.example.testjob.baseModel.CreateMailing;
+import com.example.testjob.baseModel.*;
 import com.example.testjob.model.Mailing;
 import com.example.testjob.service.MailingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,15 @@ public class MailingController {
 
     //регистрация принятия посылки в промежуточном пункте
     @PostMapping("/receiving-mailing")
-    public ResponseEntity<?> receivingMailing(@RequestParam("trackingNumber") Integer trackingNumber, @RequestParam("index") Integer index){
-        return mailingService.receivingMailing(trackingNumber,index);
+    public ResponseEntity<?> receivingMailing(@RequestBody PointPostOffice pointPostOffice ){
+
+        return mailingService.receivingMailing(pointPostOffice.getTrackingNumber(),pointPostOffice.getIndex());
     }
 
     //регистрация отправки посылки из промежуточного пункта
     @PostMapping("/departure-mailing")
-    public ResponseEntity<?> departureMailing(@RequestParam("trackingNumber") Integer trackingNumber, @RequestParam("index") Integer index){
-        return mailingService.departureMailing(trackingNumber,index);
+    public ResponseEntity<?> departureMailing(@RequestBody PointPostOffice pointPostOffice ){
+        return mailingService.departureMailing(pointPostOffice.getTrackingNumber(),pointPostOffice.getIndex());
     }
 
     //принятие посылки получателем, поле объекта Mailing -> status становаиться true
