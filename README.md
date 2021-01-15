@@ -65,7 +65,7 @@
     * ##### просмотр статуса и полной истории движения почтового отправления
      ```json
         get
-        "url": "localhost:8080/mailing?trackingNumber=271150694"
+        "url": "localhost:8089/mailing?trackingNumber=271150694"
     ```
 
 
