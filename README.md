@@ -23,7 +23,7 @@
     * ##### Его убытие из почтового отделения
     * ##### Его получение адресатом
     * ##### просмотр статуса и полной истории движения почтового отправления
-* #### API проекта - откройте https://editor.swagger.io/ и вставьте код [отсюда](#https://github.com/AntonScript/test-job/tree/develop/src/main/java/com/example/testjob/api)  
+* #### API проекта - откройте https://editor.swagger.io/ и вставьте код [отсюда](https://github.com/AntonScript/test-job/blob/develop/src/main/java/com/example/testjob/api/api.yaml)  
 * #### Пример работы с функционалом проекта    
     * #### Регистрация почтового отправления
     ```json
