@@ -23,7 +23,7 @@ public class MailingService {
     private IntermediatePointRepo intermediatePointRepo;
 
     //регистрация новой посылки, делаем проверку чтобы все поля были заполнены, если такая посылка уже создана то сообщаем об этом
-    public ResponseEntity<?> createMailing(@RequestBody Mailing mailing,@RequestParam("index") Integer index){
+    public ResponseEntity<?> createMailing(Mailing mailing,Integer index){
         Mailing newMailing = mailing;
         if(newMailing == null)
             return  new ResponseEntity<>(new Message("Заполните форму для отправки посылки"), HttpStatus.BAD_REQUEST);
